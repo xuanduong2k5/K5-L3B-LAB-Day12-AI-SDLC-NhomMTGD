@@ -1,0 +1,4 @@
+- Tôi đã làm: QA, team check và verification.
+- Tôi đã review: test smoke/unit.
+- AI sai ở đâu và tôi phát hiện thế nào: chạy test sau mỗi thay đổi.
+- Điều tôi học được: không sửa test để che lỗi luật.

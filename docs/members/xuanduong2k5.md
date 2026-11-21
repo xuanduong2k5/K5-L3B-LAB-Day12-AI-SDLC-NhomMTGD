@@ -1,0 +1,4 @@
+- Tôi đã làm (kèm link commit): hoàn thiện lab, TEAM, hợp đồng và test.
+- Tôi đã review: kiểm tra diff gather/quán và smoke suite.
+- AI sai ở đâu và tôi phát hiện thế nào: logic trạng thái cần review sau khi test.
+- Điều tôi học được: Test Contract giúp tích hợp deterministic.

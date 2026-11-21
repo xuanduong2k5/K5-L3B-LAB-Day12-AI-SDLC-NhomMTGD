@@ -1,0 +1,4 @@
+- Tôi đã làm: hỗ trợ live/UI và trình bày demo.
+- Tôi đã review: snapshot headless/live.
+- AI sai ở đâu và tôi phát hiện thế nào: kiểm bằng cửa sổ trình duyệt.
+- Điều tôi học được: UI chỉ đọc snapshot, không nhân đôi luật.

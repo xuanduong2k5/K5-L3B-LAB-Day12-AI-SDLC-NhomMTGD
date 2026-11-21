@@ -1,6 +1,6 @@
 {
   "contract_version": "1.0",
-  "team": "ten-nhom",
+  "team": "NhomMTGD",
   "team_size": 4,
   "build_cmd": "true",
   "run_cmd": "python3 -m chonoi.live --mode gather",

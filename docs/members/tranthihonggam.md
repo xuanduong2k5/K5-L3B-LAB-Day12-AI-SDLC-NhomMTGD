@@ -1,0 +1,4 @@
+- Tôi đã làm: hỗ trợ module sim/quan và dữ liệu khách.
+- Tôi đã review: theo dõi tích hợp kho, bếp và bàn.
+- AI sai ở đâu và tôi phát hiện thế nào: kiểm tra lại qua test.
+- Điều tôi học được: giữ chỗ nguyên liệu cần nhất quán qua các tick.

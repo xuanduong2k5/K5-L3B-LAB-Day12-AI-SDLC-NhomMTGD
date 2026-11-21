@@ -136,8 +136,31 @@ def validate_tuning(t):
         raise BadInput("quan.tip_reputation phải > 0")
     if q.get("burn_s") is not None:
         raise BadInput("burn_s phải là null ở Phase 1")
-    # TODO(nhóm): bổ sung kiểm các khóa còn lại nếu muốn chặt hơn (bếp/bàn, uy tín, ...).
+    _int_between("quan.carry_limit", q.get("carry_limit"), 1, 10)
+    for key in ("reputation_initial", "reputation_min", "reputation_max"):
+        if not _num(q.get(key)):
+            raise BadInput(f"quan.{key} phải là số")
+    if not (q["reputation_min"] <= q["reputation_initial"] <= q["reputation_max"]):
+        raise BadInput("reputation_initial phải nằm trong [reputation_min, reputation_max]")
+    if q["reputation_min"] >= q["reputation_max"]:
+        raise BadInput("reputation_min phải nhỏ hơn reputation_max")
+    for kind, arr in (("stoves", q.get("stoves")), ("tables", q.get("tables"))):
+        if not isinstance(arr, list) or not arr:
+            raise BadInput(f"quan.{kind} phải là mảng không rỗng")
+        seen = set()
+        for item in arr:
+            if not isinstance(item, dict) or not isinstance(item.get("id"), str) or item["id"] in seen:
+                raise BadInput(f"quan.{kind}: mỗi phần tử cần id duy nhất")
+            seen.add(item["id"])
+            _pos_in(f"quan.{kind}.{item['id']}.pos", item.get("pos"), q["bounds"], ("x", "z"))
     for dish_id, d in menu.items():
         price, cook = d.get("price"), d.get("cook_s")
         if isinstance(price, bool) or not isinstance(price, int) or price <= 0 or not _num(cook) or cook <= 0:
             raise BadInput(f"menu.{dish_id}: price (nguyên) và cook_s phải > 0")
+        recipe = d.get("recipe")
+        if not isinstance(recipe, dict) or not recipe:
+            raise BadInput(f"menu.{dish_id}: recipe phải là object nguyên liệu không rỗng")
+        for kind, count in recipe.items():
+            if kind not in ("ca_loc", "ca_linh", "bong_dien_dien", "bong_sung"):
+                raise BadInput(f"menu.{dish_id}: nguyên liệu không hợp lệ")
+            _int_between(f"menu.{dish_id}.recipe.{kind}", count, 1, 30)

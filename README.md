@@ -54,3 +54,7 @@ Hết giờ mỗi phase thì gắn tag rồi đi tiếp; chỗ chưa xong ghi tr
 
 - Dùng AI thoải mái; **không sao chép repo của nhóm khác**; bằng chứng phải thật.
 - Nhân vật, bối cảnh là bản gốc của lab; asset ngoài chỉ dùng CC0/CC-BY/MIT hoặc tự tạo, ghi nguồn trong `CREDITS.md`. Không commit API key, token, `.env`.
+
+## Sáng tạo của nhóm
+- Đã hoàn thiện mô phỏng buổi sáng và buổi tối theo Test Contract.
+- Thêm khả năng kiểm tra sống/oxy, hái rau, bắt cá, cập bến, nấu món, phục vụ khách, trả tiền và tính uy tín.

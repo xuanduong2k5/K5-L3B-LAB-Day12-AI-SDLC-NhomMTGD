@@ -26,4 +26,5 @@
 - Sáng tạo thêm được khuyến khích nhưng phải tắt ở headless (xem README, mục "Tự do sáng tạo").
 
 ## Skills / hooks của nhóm
-- (Ghi tên và khi nào dùng; tối thiểu 2 skill/hook/command nhóm tự viết, đặt ở `.agents/skills/` hoặc tương đương.)
+- `test-sanity`: chạy smoke + unit trước mỗi commit/tag.
+- `phase-proof`: cập nhật `docs/verification/`, log AI và retro trước khi gắn tag.
