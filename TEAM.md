@@ -5,9 +5,9 @@
 | Thành viên | GitHub handle | Module chính | Vai quy trình | Người dự phòng cho |
 |---|---|---|---|---|
 | Nguyễn Xuân Dương | xuanduong2k5 | sim/gather | Integrator | sim/quan |
-| Trần Thị Hồng Gấm | tranthihonggam | sim/quan | PO | sim/gather |
-| Trần Duy Mạnh | trudumanh | client/ui | Scrum/Release | qa |
-| Đinh Lê Thịnh | dinhlethinh | qa | QA lead | client/ui |
+| Trần Thị Hồng Gấm | Honggam1109 | sim/quan | PO | sim/gather |
+| Trần Duy Mạnh | TDM414 | client/ui | Scrum/Release | qa |
+| Đinh Lê Thịnh | ThinkLee04 | qa | QA lead | client/ui |
 
 **Vai quy trình:** PO (đầu mối hỏi giảng viên, giữ `docs/clarify.md`) · Integrator (giữ `docs/contracts/`, gắn tag) · QA lead · Scrum/Release. Có thể kiêm.
 
