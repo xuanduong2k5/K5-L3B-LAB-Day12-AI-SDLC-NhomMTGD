@@ -73,6 +73,30 @@ class Units(unittest.TestCase):
         self.assertEqual(s.snapshot()["tick"], 2)
         self.assertEqual(s.end_row()["reason"], "docked")
 
+    def test_session_quan_uses_customer_reserved_ingredient(self):
+        tuning = load_contract()["tuning"]
+        scenario = {
+            "random_customers": False,
+            "stock": {"ca_loc": 1},
+            "player": {"pos": [2, 8]},
+            "customers": [{
+                "id": "C1",
+                "table_id": "T1",
+                "dish": "ca_loc_nuong_trui",
+                "state": "waiting",
+                "reserved": {"ca_loc": 1},
+            }],
+        }
+        s = Session("quan", tuning, scenario, 1)
+        li = LiveInputs()
+        li.set(interact=True)
+        rows = s.step(li.advance())
+        self.assertEqual([r["name"] for r in rows], ["cook_started"])
+        snapshot = s.snapshot()
+        self.assertEqual(snapshot["stock"], {})
+        self.assertEqual(snapshot["stoves"][0]["state"], "cooking")
+        self.assertEqual(snapshot["customers"][0]["reserved"], {})
+
 
 if __name__ == "__main__":
     unittest.main()

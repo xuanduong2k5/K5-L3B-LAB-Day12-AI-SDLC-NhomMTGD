@@ -1,4 +1,4 @@
-"""Buổi sáng — Lặn & Hái (`gather`). KHUNG: bơi, chặn mép, đồng hồ, cập bến, xuất kho.
+"""Buổi sáng — Lặn & Hái (`gather`). KHUNG: bơi, oxy, hái, bắt cá, cập bến và xuất kho.
 
 Mặt cắt dòng sông nhìn NGANG: vị trí `[x, d]` (x sang phải, `d` độ sâu hướng xuống, d = 0 là mặt nước).
 `move = [x, d]`: thành phần thứ hai DƯƠNG = bơi xuống. Hướng mặt là góc từ +x, dương = xuống.
@@ -6,18 +6,6 @@ Mặt cắt dòng sông nhìn NGANG: vị trí `[x, d]` (x sang phải, `d` đ�
 Đã làm sẵn để smoke test chạy được: bơi + tăng/giảm tốc, chặn mép (d không âm), đồng hồ và hết giờ,
 cập bến (`interact` trong vùng bến -> `gather_end` reason `docked`), xuất kho, snapshot đầy đủ trường gather.
 
-Nhóm viết tiếp (đúng thứ tự một bước trong PRD mục 13.8, "Gather"):
-  TODO(nhóm, lát 1): bơi + oxy + biên + giỏ
-      - oxy: dưới nước (d > surface_depth) trừ 1 tick/tick, mặt nước hồi oxygen_refill_per_tick, kẹp [0, max]
-      - ngạt: oxy = 0 và đang dưới nước -> đếm zero_oxy_ticks, đủ choke_interval_ticks thì -1 Máu (choke)
-      - Máu về 0 -> ngất (faint, gather_end reason `fainted`, mất toàn bộ giỏ, kho rỗng)
-      - sự kiện dive / surface / oxygen_empty / choke / faint
-      - giỏ: thứ tự nhặt (LIFO), sức chứa hold_capacity
-  TODO(nhóm, lát 2): hái + bắt cá + cập bến + kho
-      - hái nút ở mặt nước (gather, hold_full), nút mọc lại (node_regrown đã có phần đếm ngược)
-      - bắt đàn cá bằng `catch` (fish_caught, hold_full, hồi chiêu catch_cd_ticks, chỉ khi dưới nước)
-      - cập bến xét TRƯỚC hái (đã có); ghi kho đúng một lần do runner lo
-Các tính năng của phase sau chưa nằm trong khung này.
 """
 
 import math

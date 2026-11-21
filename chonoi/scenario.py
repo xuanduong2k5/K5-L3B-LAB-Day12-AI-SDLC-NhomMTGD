@@ -1,9 +1,4 @@
-"""Nạp và kiểm scenario (Contract D). Trả về dict của đúng khối theo mode.
-
-KHUNG: kiểm cú pháp, id trùng, bộ đếm âm, khoang vượt sức chứa, trường lạ.
-TODO(nhóm): bổ sung kiểm mâu thuẫn mức luật mà nhóm cần (khách giữ chỗ quá kho, đơn assigned
-phải có đúng một món, khách eating thiếu giá/tip...) — xem PRD-0 mục D và 'Mâu thuẫn -> mã 2'.
-"""
+"""Nạp và kiểm scenario (Contract D). Trả về dict của đúng khối theo mode."""
 
 import json
 

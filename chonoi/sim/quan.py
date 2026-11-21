@@ -1,11 +1,4 @@
-"""Buổi tối — Mở Quán. KHUNG: đi lại, chặn biên, đồng hồ, kho nạp từ file/scenario.
-
-Nhóm viết tiếp (PRD-0 mục F, Quán):
-  TODO(nhóm, lát 3): khách đến theo lịch, chọn món nấu được, giữ chỗ nguyên liệu, kiên nhẫn,
-                     bỏ đi (customer_left), no_dish, vòng đời khách.
-  TODO(nhóm, lát 4): interact tại bếp/bàn (cook_started, dish_ready, dish_picked, served),
-                     ăn xong trả tiền (paid), boa, uy tín, hết ca (quan_end).
-"""
+"""Buổi tối — Mở Quán: khách, giữ chỗ nguyên liệu, nấu, phục vụ và tính tiền."""
 
 import math
 
@@ -170,18 +163,20 @@ class QuanSim:
             return None
         return sorted(self.menu)[0]
 
-    def _reserved_total(self):
+    def _reserved_total(self, exclude_customer_id=None):
         total = {}
         for customer in self.customers:
+            if customer["id"] == exclude_customer_id:
+                continue
             if customer.get("state", "waiting") in ("waiting", "eating"):
                 for kind, count in customer.get("reserved", {}).items():
                     total[kind] = total.get(kind, 0) + int(count)
         return total
 
-    def _dish_available(self, dish):
+    def _dish_available(self, dish, customer_id=None):
         if dish not in self.menu:
             return False
-        reserved = self._reserved_total()
+        reserved = self._reserved_total(exclude_customer_id=customer_id)
         for kind, count in self.menu[dish]["recipe"].items():
             usable = self.stock.get(kind, 0) - reserved.get(kind, 0)
             if usable < int(count):
@@ -192,8 +187,7 @@ class QuanSim:
         return [c for c in sort_by_id(self.customers)
                 if c.get("state", "waiting") == "waiting"
                 and c.get("dish") in self.menu
-                and all(self.stock.get(k, 0) >= int(v)
-                        for k, v in self.menu[c["dish"]]["recipe"].items())]
+                and self._dish_available(c["dish"], customer_id=c["id"])]
 
     def _interact_stove(self, stove):
         if stove["state"] == "ready":
