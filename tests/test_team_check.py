@@ -27,6 +27,10 @@ class TeamCheck(unittest.TestCase):
         with open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "TEAM.md"), encoding="utf-8") as f:
             m = check_team.parse_team(f.read())
         self.assertEqual(check_team.validate(m, 4), [])
+        self.assertEqual(
+            [x["handle"] for x in m],
+            ["xuanduong2k5", "Honggam1109", "TDM414", "ThinkLee04"],
+        )
 
     def test_wrong_size_duplicate_and_outsider(self):
         m = check_team.parse_team(GOOD)
